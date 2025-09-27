@@ -1,7 +1,18 @@
-password = input("Password: ")
+def main():
+    password = get_password()
+    convert_password(password)
 
-while len(password) < 10:
-    print("Password is too short.")
+
+def get_password():
     password = input("Password: ")
-else:
+    while len(password) < 10:
+        print("Password is too short.")
+        password = get_password()
+    return password
+
+
+def convert_password(password):
     print(len(password) * "*")
+
+
+main()
