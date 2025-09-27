@@ -12,11 +12,9 @@ def main():
         if choice == "G":
             score = get_valid_score()
         elif choice == "P":
-            result = determine_result(score)
-            print(result)
+            print(determine_result(score))
         elif choice == "S":
-            stars = show_stars(score)
-            print(stars)
+            print(show_stars(score))
         else:
             print("Invalid choice")
         print(menu)
@@ -25,6 +23,7 @@ def main():
 
 
 def get_valid_score():
+    """Get and Validate Score"""
     score = int(input("Score: "))
     while score < 0 or score > 100:
         print("Invalid Score")
@@ -33,6 +32,7 @@ def get_valid_score():
 
 
 def determine_result(score):
+    """Determine associated result of score"""
     if score < 0 or score > 100:
         result = "Invalid score"
     elif score >= 90:
@@ -45,6 +45,7 @@ def determine_result(score):
 
 
 def show_stars(score):
+    """Convert score into str of *"""
     return score * "*"
 
 
