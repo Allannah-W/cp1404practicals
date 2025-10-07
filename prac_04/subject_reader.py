@@ -7,12 +7,12 @@ FILENAME = "subject_data.txt"
 
 
 def main():
-    subject_data = load_data(FILENAME)
+    subject_data = load_and_format_subject_details(FILENAME)
     print(subject_data)
     convey_subject_details(subject_data)
 
 
-def load_data(filename=FILENAME):
+def load_and_format_subject_details(filename=FILENAME):
     """Read data from file formatted like: subject,lecturer,number of students."""
     input_file = open(filename)
     subject_data = []
