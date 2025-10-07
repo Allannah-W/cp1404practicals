@@ -9,6 +9,7 @@ FILENAME = "subject_data.txt"
 def main():
     subject_data = load_data(FILENAME)
     print(subject_data)
+    convey_subject_details(subject_data)
 
 
 def load_data(filename=FILENAME):
@@ -28,5 +29,10 @@ def load_data(filename=FILENAME):
     input_file.close()
     return subject_data
 
+
+def convey_subject_details(subject_data):
+    """Print subject details clearly in sentences."""
+    for subject, teacher, number_of_students in subject_data:
+        print(f"{subject} is taught by {teacher:12} and has {number_of_students:4} students")
 
 main()
