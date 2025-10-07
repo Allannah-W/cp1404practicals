@@ -35,4 +35,5 @@ def convey_subject_details(subject_data):
     for subject, teacher, number_of_students in subject_data:
         print(f"{subject} is taught by {teacher:12} and has {number_of_students:4} students")
 
+
 main()

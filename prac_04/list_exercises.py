@@ -13,6 +13,7 @@ def main():
 
 
 def get_numbers():
+    """Gets 5 numbers from user and combines into a list"""
     numbers = []
     for i in range(5):
         number = int(input("Number: "))
@@ -21,6 +22,7 @@ def get_numbers():
 
 
 def print_numbers_information(numbers):
+    """Prints summary information about list of numbers"""
     print(f"The first number is {numbers[0]}")
     print(f"The last number is {numbers[-1]}")
     print(f"The smallest number is {min(numbers)}")
@@ -29,11 +31,13 @@ def print_numbers_information(numbers):
 
 
 def get_username():
+    """Gets username input from user"""
     username = input("Username: ")
     return username
 
 
 def check_for_authorised_user(username):
+    """Compares username input to list of usernames to determine access status"""
     if username in usernames:
         print("Access granted")
     else:
