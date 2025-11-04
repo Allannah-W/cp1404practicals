@@ -36,6 +36,15 @@ def display_menu():
     print("- (Q)uit")
 
 
+def save_projects(filename, projects):
+    """Save projects to tab-delimited file"""
+    with open(filename, "w", encoding="utf-8") as out_file:
+        print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage", file=out_file)  #print header
+        for project in projects:
+            print(f"{project.name}\t{project.start_date.strftime('%d/%m/%Y')}\t"
+                  f"{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}", file=out_file)
+
+
 def main():
     """Load projects and display menu"""
     filename = "projects.txt"
@@ -54,7 +63,8 @@ def main():
             print(f"Loaded {len(projects)} from {filename}")
         elif choice == "S":
             filename = input("Filename to save to: ")
-            save_projects()
+            save_projects(filename, projects)
+            print(f"Saved {len(projects)} projects to {filename}")
         elif choice == "D":
             display_projects()
         elif choice == "F":
