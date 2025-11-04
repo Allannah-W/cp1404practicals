@@ -25,13 +25,51 @@ def load_projects(filename):
     return projects
 
 
+def display_menu():
+    """Display the menu."""
+    print("- (L)oad projects")
+    print("- (S)ave projects")
+    print("- (D)isplay projects")
+    print("- (F)ilter projects by date")
+    print("- (A)dd new project")
+    print("- (U)pdate project")
+    print("- (Q)uit")
+
+
 def main():
     """Load projects and display menu"""
     filename = "projects.txt"
     projects = load_projects(filename)
 
-    for project in projects:
-        print(project)
+    print("Welcome to Pythonic Project Management")
+    print(f"Loaded {len(projects)} from {filename}")
+
+    choice = ""
+    while choice != "Q":
+        display_menu()
+        choice = input(">>>").upper()
+        if choice == "L":
+            filename = input("Filename to load from: ")
+            projects = load_projects(filename)
+            print(f"Loaded {len(projects)} from {filename}")
+        elif choice == "S":
+            filename = input("Filename to save to: ")
+            save_projects()
+        elif choice == "D":
+            display_projects()
+        elif choice == "F":
+            filter_projects_by_date()
+        elif choice == "A":
+            add_new_project()
+        elif choice == "U":
+            update_project()
+        elif choice == "Q":
+            save = input("Would you like to save to the default file before quitting? (y/n): ").lower()
+            if save == "y":
+                save_projects()
+        else:
+            print("Invalid choice")
+    print("Thank you for using custom-built project management software.")
 
 
 main()
