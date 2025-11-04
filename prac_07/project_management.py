@@ -5,6 +5,8 @@ Actual:
 """
 
 from datetime import datetime
+from operator import attrgetter
+
 from project import Project
 
 
@@ -59,6 +61,17 @@ def display_projects(projects):
         print(f"\t{project}")
 
 
+def filter_projects_by_date(projects):
+    """Get input date and return projects which start after said date"""
+    date = input("Show projects that start after date (dd/mm/yyyy): ")
+    date = datetime.strptime(date, "%d/%m/%Y").date()
+
+    filtered_projects = [project for project in projects if project.start_date > date]
+
+    for project in sorted(filtered_projects, key=attrgetter("start_date")):
+        print(project)
+
+
 def main():
     """Load projects and display menu"""
     filename = "projects.txt"
@@ -82,7 +95,7 @@ def main():
         elif choice == "D":
             display_projects(projects)
         elif choice == "F":
-            filter_projects_by_date()
+            filter_projects_by_date(projects)
         elif choice == "A":
             add_new_project()
         elif choice == "U":
@@ -90,7 +103,7 @@ def main():
         elif choice == "Q":
             save = input("Would you like to save to the default file before quitting? (y/n): ").lower()
             if save == "y":
-                save_projects()
+                save_projects(filename, projects)
         else:
             print("Invalid choice")
     print("Thank you for using custom-built project management software.")
