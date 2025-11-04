@@ -6,6 +6,7 @@ Actual:
 
 from datetime import datetime
 from operator import attrgetter
+from random import choice
 
 from project import Project
 
@@ -84,6 +85,24 @@ def add_new_project(projects):
     projects.append(Project(name, start_date, priority, cost_estimate, completion_percentage))
 
 
+def update_project(projects):
+    """Select project and update details"""
+    for i, project in enumerate(projects):
+        print(f"{i} {project}")
+
+    choice = int(input("Project choice: "))
+    project = projects[choice]
+    print(project)
+
+    new_percentage = input("New Percentage: ")
+    new_priority = input("New Priority: ")
+
+    if new_percentage:
+        project.completion_percentage = int(new_percentage)
+    if new_priority:
+        project.priority = int(new_priority)
+
+
 def main():
     """Load projects and display menu"""
     filename = "projects.txt"
@@ -111,10 +130,10 @@ def main():
         elif choice == "A":
             add_new_project(projects)
         elif choice == "U":
-            update_project()
+            update_project(projects)
         elif choice == "Q":
-            save = input("Would you like to save to the default file before quitting? (y/n): ").lower()
-            if save == "y":
+            save = input(f"Would you like to save to {filename}? ").lower()
+            if save == "y" or "yes":
                 save_projects(filename, projects)
         else:
             print("Invalid choice")
