@@ -45,6 +45,20 @@ def save_projects(filename, projects):
                   f"{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}", file=out_file)
 
 
+def display_projects(projects):
+    """Display projects under completed/ incompleted categories, sorted by priority"""
+    incomplete = sorted([project for project in projects if not project.is_complete()])
+    completed = sorted([project for project in projects if project.is_complete()])
+
+    print("Incomplete projects:")
+    for project in incomplete:
+        print(f"\t{project}")
+
+    print("Completed projects:")
+    for project in completed:
+        print(f"\t{project}")
+
+
 def main():
     """Load projects and display menu"""
     filename = "projects.txt"
@@ -66,7 +80,7 @@ def main():
             save_projects(filename, projects)
             print(f"Saved {len(projects)} projects to {filename}")
         elif choice == "D":
-            display_projects()
+            display_projects(projects)
         elif choice == "F":
             filter_projects_by_date()
         elif choice == "A":
