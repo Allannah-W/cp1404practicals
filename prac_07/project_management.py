@@ -72,6 +72,18 @@ def filter_projects_by_date(projects):
         print(project)
 
 
+def add_new_project(projects):
+    """Add new project to projects list"""
+    print("Let's add a new project")
+    name = input("Name: ")
+    start_date = input("Start date (dd/mm/yyyy): ")
+    start_date = datetime.strptime(start_date, "%d/%m/%Y").date()
+    priority = int(input("Priority: "))
+    cost_estimate = float(input("Cost estimate: $"))
+    completion_percentage = int(input("Percent complete: "))
+    projects.append(Project(name, start_date, priority, cost_estimate, completion_percentage))
+
+
 def main():
     """Load projects and display menu"""
     filename = "projects.txt"
@@ -97,7 +109,7 @@ def main():
         elif choice == "F":
             filter_projects_by_date(projects)
         elif choice == "A":
-            add_new_project()
+            add_new_project(projects)
         elif choice == "U":
             update_project()
         elif choice == "Q":
