@@ -2,6 +2,8 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.properties import StringProperty
 
+MILES_TO_KM = 1.609
+
 
 class ConvertMilesKM(App):
     """ ConvertMilesKM is a Kivy App for converting miles to km's """
@@ -16,15 +18,22 @@ class ConvertMilesKM(App):
 
     def handle_calculate(self, value):
         """Convert miles to km"""
-        miles = float(self.root.ids.input_number.text)
-        km = miles * 1.609
+        try:
+            miles = float(self.root.ids.input_number.text)
+        except ValueError:
+            miles = 0
+        km = miles * MILES_TO_KM
         self.output = f"{km:.5f} km"
 
     def handle_increment(self, change):
         """Increase/decrease miles input by 1"""
-        miles = float(self.root.ids.input_number.text)
+        try:
+            miles = float(self.root.ids.input_number.text)
+        except ValueError:
+            miles = 0
         miles += change
         self.root.ids.input_number.text = str(miles)
+        self.handle_calculate(self.root.ids.input_number.text)
 
 
 ConvertMilesKM().run()
